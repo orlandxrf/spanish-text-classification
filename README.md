@@ -5,8 +5,8 @@ Approaches about Spanish text classification task with news documents
 
 The table below describes the data by each document.
 
-\#	| category | # docs | # vocabulary
----------------------------------------
+No |  category  |  docs   | vocabulary
+---|------------|---------|------------
 1  | sports     | 100,085 | 192,717
 2  | police     | 81,489  | 121,272
 3  | spectacle  | 41,417  | 135,490
