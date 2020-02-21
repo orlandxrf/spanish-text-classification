@@ -23,4 +23,6 @@ No  |  category  |  docs   | vocabulary
 14  | gossip     | 5,576   | 72,893
 15  | crime      | 5,411   | 38,528
 
+The figure below shows the dataset info.
 
+![dataset description](/img/categories.png)
