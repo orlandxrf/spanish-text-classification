@@ -26,3 +26,5 @@ No  |  category  |  docs   | vocabulary
 The figure below shows the dataset info.
 
 ![dataset description](/img/categories.png)
+
+
