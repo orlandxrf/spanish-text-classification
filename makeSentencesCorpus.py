@@ -1,4 +1,6 @@
 import sys
+from datetime import datetime
+start_time = datetime.now()
 
 def saveIntoFile(fname, data, mode='a'):
 	"""Save your data into file"""
@@ -55,20 +57,27 @@ saveIntoFile(fnsave, data, 'w')
 
 
 for cat in categories:
-	# filename = 'data/categories/corpus/{}'.format( categories[cat] )
-	filename = 'data/corpus/{}'.format( categories[cat] )
+	filename = '/home/orlando/projects/filtrado/data/categories/corpus/{}'.format( categories[cat] )
+	# filename = 'data/corpus/{}'.format( categories[cat] )
+	print ( "\tProcesando corpus de:\t{}".format(cat) )
 	with open(filename, 'r') as f:
 		for i, row in enumerate(f):
 			if i==0: continue # skip headers
-			sys.stdout.write( '\tProcesando {} documentos...\r'.format( format(i), ',d') )
-			sys.stdout.flush()
+			# sys.stdout.write( '\tProcesando {} documentos...\r'.format( format(i), ',d') )
+			# sys.stdout.flush()
 			category, doc = row.replace('\n','').split('\t')
 			sentences = splitSpanishSentences(doc)
 			for snt in sentences:
 				snt = cleanText(snt)
 				data = '{}\t{}\t{}\n'.format(cat, i, snt)
 				saveIntoFile(fnsave, data)
-			break
-	break
 	f.close()
 	print ('\n\tTerminado!\n\n')
+print ('\n\tTerminado!')
+
+# -----------------------------------------------------------------------------------------------------------------
+end_time = datetime.now()
+print ('\n\t==========================')
+print('\tDuration: {}'.format(end_time - start_time))
+print ('\t==========================')
+
