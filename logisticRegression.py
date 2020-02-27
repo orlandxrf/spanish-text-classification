@@ -21,7 +21,8 @@ with open(filename, 'r') as f:
 		if i==0: continue # skip headers
 		sys.stdout.write('\tprocesando {} documentos ...\r'.format( format(i, ',d') ))
 		sys.stdout.flush()
-		category, doc = row.replace('\n','').split('\t')
+		# category, doc = row.replace('\n','').split('\t') # using original documents without remove duplicate sentences
+		category, id_doc, doc = row.replace('\n','').split('\t') # removing duplicate sentences. doc == sentence
 		categories.append(category)
 		documents.append(doc)
 		if category not in classes: classes[category] = 1
