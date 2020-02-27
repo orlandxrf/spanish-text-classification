@@ -22,6 +22,8 @@ No  |  category  |  docs   | vocabulary
 13  | finance    | 10,872  | 73,658
 14  | gossip     | 5,576   | 72,893
 15  | crime      | 5,411   | 38,528
+|   |            | 450,174 |1,562,231
+
 
 
 The figure below shows the dataset info.
