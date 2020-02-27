@@ -15,7 +15,9 @@ start_time = datetime.now()
 categories = []
 documents = []
 classes = {}
-filename = 'data/corpora.txt'
+# filename = 'data/corpora.txt' # document corpora with duplicate sentences
+filename = 'data/corpora_ok.txt' # sentences corpora without duplicate sentences
+print ('\t{}'.format(filename))
 with open(filename, 'r') as f:
 	for i, row in enumerate(f):
 		if i==0: continue # skip headers
@@ -38,7 +40,7 @@ print ( '\t{}\t\tX_test'.format( format(len(X_test),',d') ) )
 print ( '\t{}\t\ty_test'.format( format(len(y_test),',d') ) )
 print ('')
 # -----------------------------------------------------------------------------------------------
-logreg = Pipeline([('vect', CountVectorizer()), ('tfidf', TfidfTransformer()), ('clf', LogisticRegression(solver='lbfgs', n_jobs=8, C=1e5)), ])
+logreg = Pipeline([('vect', CountVectorizer()), ('tfidf', TfidfTransformer()), ('clf', LogisticRegression(solver='lbfgs', max_iter=200, multi_class='auto', n_jobs=8, C=1e5)), ])
 logreg.fit(X_train, y_train)
 
 from sklearn.metrics import classification_report
