@@ -12,8 +12,8 @@ data = 'category\tid_doc\tsentence\n'
 saveIntoFile(fnsave, data, 'w')
 
 sentences = {}
-duplicates = {}
-categories = {}
+totalCategories = {}
+originalCategories = {}
 total = 0
 with open(filename, 'r') as f:
 	for i, row in enumerate(f):
@@ -23,26 +23,24 @@ with open(filename, 'r') as f:
 		sys.stdout.write( '\tProcesando {} oraciones ...\r'.format( format(i, ',d') ) )
 		sys.stdout.flush()
 		category, id_doc, sentence = row.replace('\n','').split('\t')
+		# --------------------------------------------------------------
+		# count number of original sentences by category
+		if category not in originalCategories: originalCategories[category] = 1
+		else: originalCategories[category] += 1
+		# --------------------------------------------------------------
 		if sentence not in sentences:
 			sentences[sentence] = (category, id_doc)
-			if category not in categories:
-				categories[category] = {'ok':1}
-			else:
-				categories[category]['ok'] += 1
-		else:
-			if category not in duplicates:
-				duplicates[category] = {'dup':1}
-			else:
-				duplicates[category]['dup'] += 1
+			if category not in totalCategories: totalCategories[category] = 1
+			else: totalCategories[category] += 1
 f.close()
 print ('\n\tTerminado!\n')
 
-categories = dict(sorted( categories.items(), key=lambda x:x[1]['ok'], reverse=True ))
+totalCategories = dict(sorted( totalCategories.items(), key=lambda x:x[1], reverse=True ))
 
 print ( '\t#\torig\tdup\ttotal\tcategory' )
-for i, cat in enumerate(categories):
-	rest = categories[cat]['ok'] - duplicates[cat]['dup']
-	print ( '\t{}\t{}\t{}\t{}\t{}'.format(i+1, format(categories[cat]['ok'], ',d'), format(duplicates[cat]['dup'], ',d'), format(rest, ',d'), cat) )
+for i, cat in enumerate(totalCategories):
+	rest =  originalCategories[cat] - totalCategories[cat]
+	print ( '\t{}\t{}\t{}\t{}\t{}'.format(i+1, format(originalCategories[cat], ',d'), format(rest, ',d'), format(totalCategories[cat], ',d'), cat) )
 print ('\n\tTerminado!\n')
 
 print ( '\t{}\tTotal de oraciones'.format( format(total,',d') ) )
