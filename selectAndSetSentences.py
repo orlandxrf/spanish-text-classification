@@ -12,29 +12,47 @@ data = 'category\tid_doc\tsentence\n'
 saveIntoFile(fnsave, data, 'w')
 
 sentences = {}
+duplicates = {}
 categories = {}
+total = 0
 with open(filename, 'r') as f:
 	for i, row in enumerate(f):
 		if i==0: continue # skip headers
-		sys.stdout.write( '\tProcesando {} oraciones ...\r'.format( format(i), ',d') )
+		# if i==100: break
+		total += 1
+		sys.stdout.write( '\tProcesando {} oraciones ...\r'.format( format(i, ',d') ) )
 		sys.stdout.flush()
 		category, id_doc, sentence = row.replace('\n','').split('\t')
 		if sentence not in sentences:
-			sentences[sentence] = {category, id_doc}
+			sentences[sentence] = (category, id_doc)
 			if category not in categories:
-				categories[category] = 1
+				categories[category] = {'ok':1}
 			else:
-				categories[category] += 1
-		break
+				categories[category]['ok'] += 1
+		else:
+			if category not in duplicates:
+				duplicates[category] = {'dup':1}
+			else:
+				duplicates[category]['dup'] += 1
 f.close()
 print ('\n\tTerminado!\n')
 
-categories = dict(sorted( categories.items(), key=lambda x:x[1], reverse=True ))
+categories = dict(sorted( categories.items(), key=lambda x:x[1]['ok'], reverse=True ))
 
+print ( '\t#\torig\tdup\ttotal\tcategory' )
 for i, cat in enumerate(categories):
-	print ( '\t{}\t{}\t{}'.format(i, format(categories[cat], ',d'), cat) )
+	rest = categories[cat]['ok'] - duplicates[cat]['dup']
+	print ( '\t{}\t{}\t{}\t{}\t{}'.format(i+1, format(categories[cat]['ok'], ',d'), format(duplicates[cat]['dup'], ',d'), format(rest, ',d'), cat) )
 print ('\n\tTerminado!\n')
 
-for snt in sentences:
-	print (snt)
-	print (sentences[snt])
+print ( '\t{}\tTotal de oraciones'.format( format(total,',d') ) )
+print ( '\t{}\tOraciones a guardar'.format( format(len(sentences),',d') ) )
+print ( '\t{}\tOraciones duplicadas\n'.format( format(total-len(sentences), ',d') ) )
+
+for i, snt in enumerate(sentences):
+	sys.stdout.write( '\tGuardando {} oraciones ...\r'.format( format(i+1, ',d') ) )
+	sys.stdout.flush()
+	data = '{}\t{}\t{}\n'.format(sentences[snt][0], sentences[snt][1], snt)
+	saveIntoFile(fnsave, data)
+print ('\n\tTerminado!\n')
+
