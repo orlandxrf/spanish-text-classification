@@ -25,7 +25,6 @@ No  |  category  |  docs   | vocabulary
 |   |            | 450,174 |1,562,231
 
 
-
 The figure below shows the dataset info.
 
 ![dataset description](/img/categories.png)
@@ -51,3 +50,6 @@ No  | category   | original  | duplicates | total
 15  | crime      | 69,477    | 24,854     | 44,623
  | | | 6,926,674 | 2,771,673  | 4,155,001
 
+The figure below shows the dataset info.
+
+![dataset description](/img/sentences.png)
