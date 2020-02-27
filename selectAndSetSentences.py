@@ -20,11 +20,21 @@ with open(filename, 'r') as f:
 		sys.stdout.flush()
 		category, id_doc, sentence = row.replace('\n','').split('\t')
 		if sentence not in sentences:
-			sentences[sentence] = 1
+			sentences[sentence] = {category, id_doc}
 			if category not in categories:
 				categories[category] = 1
 			else:
 				categories[category] += 1
+		break
 f.close()
+print ('\n\tTerminado!\n')
 
+categories = dict(sorted( categories.items(), key=lambda x:x[1], reverse=True ))
 
+for i, cat in enumerate(categories):
+	print ( '\t{}\t{}\t{}'.format(i, format(categories[cat], ',d'), cat) )
+print ('\n\tTerminado!\n')
+
+for snt in sentences:
+	print (snt)
+	print (sentences[snt])
