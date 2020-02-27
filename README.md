@@ -30,6 +30,7 @@ The figure below shows the dataset info.
 
 The total sentences number by category as shown in the table below
 
+<td colspan=5>Sentences</td>
 No  | category   | original  | duplicates | total
 :---|   :---:    |      ---: |      ---:  |    ---:
 1   | sports     | 1,573,920 | 605,859    | 968,061
