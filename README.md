@@ -6,7 +6,7 @@ Approaches about Spanish text classification task with news documents
 The table below describes the data by each document.
 
 No  |  category  |  docs   | vocabulary
-:---|    :---:   |    ---: |    ---:
+:---|    :---    |    ---: |    ---:
 1   | sports     | 100,085 | 192,717
 2   | police     | 81,489  | 121,272
 3   | spectacle  | 41,417  | 135,490
@@ -31,7 +31,7 @@ The figure below shows the dataset info.
 The total sentences number by category as shown in the table below
 
 No  | category   | original  | duplicates | total
-:---|   :---:    |      ---: |      ---:  |    ---:
+:---|   :---     |      ---: |      ---:  |    ---:
 1   | sports     | 1,573,920 | 605,859    | 968,061
 2   | police     | 1,044,618 | 462,191    | 582,427
 3   | culture    | 566,607   | 178,813    | 387,794
