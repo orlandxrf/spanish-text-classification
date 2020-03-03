@@ -1,4 +1,5 @@
 import fasttext
+import fasttext.util
 import sys
 from datetime import datetime
 
@@ -42,6 +43,7 @@ print ( '\tLongitud del vocabulario:\t{}\n\n'.format( format(len(vocabulary),',d
 print ('\tCargando FastText Model...')
 start_time_load = datetime.now()
 ft = fasttext.load_model('/home/orlando/projects/data/embeddings/cc.es.300.bin')
+fasttext.util.reduce_model(ft, 100)
 end_time = datetime.now()
 print('\tTiempo de carga: {}'.format(end_time - start_time_load))
 print ('\tModelo cargado!\n')
@@ -49,7 +51,7 @@ print ( '\tEmbeddings de dimensión: \t{}'.format(ft.get_dimension()) )
 
 
 
-fnsave = 'data/myembeddings.txt'
+fnsave = 'data/myembeddings100.txt'
 data = 'word\tembeddings\n'
 saveIntoFile(fnsave, data, 'w')
 
