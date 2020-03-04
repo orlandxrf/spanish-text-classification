@@ -546,30 +546,22 @@ class BiLSTM(object):
 		# 	np.array(self.X_test_char).reshape((len(self.X_test_char), self.max_snt_len, self.max_char_len))
 		# ], verbose=0)
 
+		# ---------------------------------------------------------------------------------
+		# predicted data
+		# test_pred = model.predict(X_te, verbose=0)
+		idx2tag = {i: w for w, i in self.tag2idx.items()}
+		def pred2label(pred):
+			out = []
+			for pred_i in pred:
+				out_i = []
+				for p in pred_i:
+					p_i = np.argmax(p)
+					out_i.append(idx2tag[p_i].replace('<pad>', 'O'))
+				out.append(out_i)
+			return out
 
-		y_words, y_true, y_pred = [], [], []
-
-		idx2word = {self.word2idx[word]: word for word in self.word2idx}
-		idx2tag = {self.tag2idx[tag]: tag for tag in self.tag2idx}
-
-		g = open(predict_path, 'w') # reset file
-		g.close()
-		for i, __ in enumerate(predictions):
-			p = np.argmax(predictions[i], axis=-1)
-			tmpWord, tmpTrue, tmpPred = [], [], []
-			data = ''
-			for idxWord, idxTrue, idxPred in zip(self.X_test[i], self.y_test[i], p):
-				if idxWord != 0: # padding token
-					tmpWord.append(idx2word[idxWord])
-					tmpTrue.append(idx2tag[idxTrue])
-					tmpPred.append(idx2tag[idxPred])
-			data = '[{}\t{}\t{}]'.format(tmpWord, tmpTrue, tmpPred)
-			# tool.saveData(predict_path, data, 'a')
-			self.saveIntoFile(predict_path, data)
-
-			# y_words.append(tmpWord)
-			y_true.append(tmpTrue)
-			y_pred.append(tmpPred)
+		y_pred = pred2label( predictions )
+		y_true = pred2label( self.y_test )
 
 		labels = list( self.tag2idx.keys() ).copy()
 		# labels.remove('O') # remove class 'O'
@@ -586,6 +578,48 @@ class BiLSTM(object):
 		metric1 = cr_individual(true_y, pred_y, labels=labels)
 		print (metric1)
 		print ('-'*100)
+		# ---------------------------------------------------------------------------------
+
+
+		# y_words, y_true, y_pred = [], [], []
+
+		# idx2word = {self.word2idx[word]: word for word in self.word2idx}
+		# idx2tag = {self.tag2idx[tag]: tag for tag in self.tag2idx}
+
+		# g = open(predict_path, 'w') # reset file
+		# g.close()
+		# for i, __ in enumerate(predictions):
+		# 	p = np.argmax(predictions[i], axis=-1)
+		# 	tmpWord, tmpTrue, tmpPred = [], [], []
+		# 	data = ''
+		# 	for idxWord, idxTrue, idxPred in zip(self.X_test[i], self.y_test[i], p):
+		# 		if idxWord != 0: # padding token
+		# 			tmpWord.append(idx2word[idxWord])
+		# 			tmpTrue.append(idx2tag[idxTrue])
+		# 			tmpPred.append(idx2tag[idxPred])
+		# 	data = '[{}\t{}\t{}]'.format(tmpWord, tmpTrue, tmpPred)
+		# 	# tool.saveData(predict_path, data, 'a')
+		# 	self.saveIntoFile(predict_path, data)
+
+		# 	# y_words.append(tmpWord)
+		# 	y_true.append(tmpTrue)
+		# 	y_pred.append(tmpPred)
+
+		# labels = list( self.tag2idx.keys() ).copy()
+		# # labels.remove('O') # remove class 'O'
+		# # labels = sorted(labels, key=lambda x: x.split('-')[2]) # sort labels
+
+		# metric2 = cr_compose(y_true, y_pred)
+		# print ('-'*100)
+		# print (metric2)
+		# print ('-'*100)
+
+		# true_y, pred_y = [], []
+		# for k in range(len(y_true)): true_y += y_true[k]
+		# for k in range(len(y_pred)): pred_y += y_pred[k]
+		# metric1 = cr_individual(true_y, pred_y, labels=labels)
+		# print (metric1)
+		# print ('-'*100)
 
 relation_codes = {
 	'Acronym': 'AC',
