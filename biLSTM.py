@@ -492,7 +492,7 @@ class BiLSTM(object):
 		print ('\tModel saved in: {}'.format(jsonpath))
 		print ('\tModel saved in: {}'.format(weightspath))
 
-	def saveIntoFile(fname, data, mode='a'):
+	def saveIntoFile(self, fname, data, mode='a'):
 		"""Save your data into file"""
 		g = open(fname, mode)
 		g.write(data)
@@ -565,7 +565,7 @@ class BiLSTM(object):
 					tmpPred.append(idx2tag[idxPred])
 			data = '[{}\t{}\t{}]'.format(tmpWord, tmpTrue, tmpPred)
 			# tool.saveData(predict_path, data, 'a')
-			saveIntoFile(predict_path, data)
+			self.saveIntoFile(predict_path, data)
 
 			# y_words.append(tmpWord)
 			y_true.append(tmpTrue)
