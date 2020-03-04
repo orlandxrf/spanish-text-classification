@@ -492,6 +492,12 @@ class BiLSTM(object):
 		print ('\tModel saved in: {}'.format(jsonpath))
 		print ('\tModel saved in: {}'.format(weightspath))
 
+	def saveIntoFile(fname, data, mode='a'):
+		"""Save your data into file"""
+		g = open(fname, mode)
+		g.write(data)
+		g.close()
+
 	def plotFunctions(self, history, name):
 		"""Plot functions"""
 		import pandas as pd
@@ -501,8 +507,12 @@ class BiLSTM(object):
 
 		plt.figure(figsize=(18,8))
 		plt.subplot(1, 2, 1)
-		tl = plt.plot(hist["accuracy"], color='blue', label='train') # marker='o',
-		vl = plt.plot(hist["val_accuracy"], color='red', label='validation') #  marker='s',
+		# old tensorflow version
+		tl = plt.plot(hist["acc"], color='blue', label='train') # marker='o',
+		vl = plt.plot(hist["val_acc"], color='red', label='validation') #  marker='s',
+		# new tensorflow version
+		# tl = plt.plot(hist["accuracy"], color='blue', label='train') # marker='o',
+		# vl = plt.plot(hist["val_accuracy"], color='red', label='validation') #  marker='s',
 		plt.title('Accuracy: train vs validation')
 		plt.ylabel('Accuracy')
 		plt.xlabel('Epochs')
@@ -526,7 +536,6 @@ class BiLSTM(object):
 		"""Get predictions"""
 		from sklearn.metrics import classification_report as cr_individual
 		from seqeval.metrics import classification_report as cr_compose
-		import nlptools as nlp
 		import numpy as np
 
 		predictions = self.model.predict(self.X_test, verbose=0)
@@ -543,7 +552,6 @@ class BiLSTM(object):
 		idx2word = {self.word2idx[word]: word for word in self.word2idx}
 		idx2tag = {self.tag2idx[tag]: tag for tag in self.tag2idx}
 
-		tool = nlp.Tools()
 		g = open(predict_path, 'w') # reset file
 		g.close()
 		for i, __ in enumerate(predictions):
@@ -556,7 +564,8 @@ class BiLSTM(object):
 					tmpTrue.append(idx2tag[idxTrue])
 					tmpPred.append(idx2tag[idxPred])
 			data = '[{}\t{}\t{}]'.format(tmpWord, tmpTrue, tmpPred)
-			tool.saveData(predict_path, data, 'a')
+			# tool.saveData(predict_path, data, 'a')
+			saveIntoFile(predict_path, data)
 
 			# y_words.append(tmpWord)
 			y_true.append(tmpTrue)
@@ -670,7 +679,7 @@ parameters = {
 	'words_units': 64,
 	'words_dropout': 0.4,
 	'words_recurrent_dropout': 0.4,
-	'learn_rate': 0.001,
+	'learn_rate': 0.01,
 	'summary': True,
 	'plot_model': {
 		'plot': True,
@@ -696,19 +705,26 @@ max_snt_len = 250;
 embed_path = 'data/embeddings_corpora_100.txt'
 corpus_path = 'data/news_corpora.txt'
 filepathPOS = '/home/orlando/treetagger/'
+pred_path = 'data/predictions.txt'
 funcs_path = 'img/acc_loss'
 
+words_vocab = 'data/vocab/words_vocab.npy'
+tags_vocab = 'data/vocab/tags_vocab.npy'
+json_model = 'model/nn_model.json'
+weights_model = 'model/nn_model.h5'
 
-bi = BiLSTM(max_snt_len, corpus_path, filepathPOS, verbose=False)
-bi.parameters = parameters # set parameters to compile and fit model
-bi.loadEmbeddings(embed_path)
-bi.compileModel2()
-
-history = bi.fitModel()
-# print("\tSave model to disk")
-# bi.saveModel(json_model, weights_model)
-bi.plotFunctions(history, funcs_path)
-bi.getPredictions(pred_path)
+nn = BiLSTM(max_snt_len, corpus_path, filepathPOS, verbose=False)
+nn.parameters = parameters # set parameters to compile and fit model
+nn.loadEmbeddings(embed_path)
+print("\tSave vocabularies to disk")
+nn.saveVocabulary(words_vocab, nn.word2idx)
+nn.saveVocabulary(tags_vocab, nn.tag2idx)
+nn.compileModel2()
+history = nn.fitModel()
+print("\tSave model to disk")
+nn.saveModel(json_model, weights_model)
+nn.plotFunctions(history, funcs_path)
+nn.getPredictions(pred_path)
 
 print ('\n\n')
 print ('='*50)
