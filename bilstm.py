@@ -317,7 +317,7 @@ start_general_time = datetime.now()
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# run code to get relation extraction
+# run code to get text classification
 import warnings
 import time
 
@@ -349,7 +349,7 @@ parameters = {
 	'summary': True,
 	'plot_model': {
 		'plot': True,
-		'name': 'img/modelo_5k_lr001',
+		'name': 'img/model',
 		'dpi': 200,
 	},
 	'batch_size': 100,
