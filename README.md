@@ -51,11 +51,28 @@ The figure below shows the documents histogram.
 
 ![documents histogram](/img/zoom_docs_hist.png)
 
+## Requirements
+
+Pyhton libraries used in this project:
+
+* scikit-learn==0.21.3
+* keras==2.3.1
+* tensorflow==2.1.0
+
 ## Bi-LSTM model
 
 ![model](/img/model.png)
 
+## Results
 
+
+The figure below shows the loss and accuracy function to train the Bi-LSTM network for Corpus MxCN<sub>o</sub>.
+
+![model](/img/acc_loss.png)
+
+The figure below shows the loss and accuracy function to train the Bi-LSTM network for Corpus MxCN<sub>b</sub>.
+
+![model](/img/acc_loss_5k.png)
 
 
 
