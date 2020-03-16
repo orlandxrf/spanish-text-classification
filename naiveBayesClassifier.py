@@ -15,13 +15,18 @@ start_time = datetime.now()
 categories = []
 documents = []
 classes = {}
-filename = 'data/corpora.txt'
+
+filename = 'data/mxnc_o.txt'
+# filename = 'data/mxnc_b.txt'
+
+print ('\t{}'.format(filename))
 with open(filename, 'r') as f:
 	for i, row in enumerate(f):
 		if i==0: continue # skip headers
 		sys.stdout.write('\tprocesando {} documentos ...\r'.format( format(i, ',d') ))
 		sys.stdout.flush()
-		category, doc = row.replace('\n','').split('\t')
+		# category, doc = row.replace('\n','').split('\t')
+		category, id_doc, doc = row.replace('\n','').split('\t')
 		categories.append(category)
 		documents.append(doc)
 		if category not in classes: classes[category] = 1
