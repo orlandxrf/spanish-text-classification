@@ -3,6 +3,14 @@ Approaches about Spanish text classification task with news documents
 
 ## Dataset
 
+The datasets are about Mexican news and have 15 categories.
+
+### Downloads
+
+* [MxCN<sub>o</sub> dataset](https://drive.google.com/file/d/1yag5gLaCbT1GWoxYEY1e2IrmZImfM9oe/view?usp=sharing)
+* [MxCN<sub>b</sub> dataset](https://drive.google.com/file/d/1AL6mede_WPDe0P6nN21iQoxjTTM4sFfn/view?usp=sharing)
+* [FastText Embeddings](https://drive.google.com/open?id=1moxnW-VSy99mtFExfU5muEubTQ62iQem)
+
 The table below describes the data by each category for Corpus MxCN<sub>o</sub>.
 
 No  |  category  |  docs   |   tokens    |vocabulary
