@@ -81,7 +81,7 @@ The figure below shows the loss and accuracy function to train the Bi-LSTM netwo
 
 ## Results
 
-### Classifiers evalution on the MxCN<sub>o</sub> corpus
+### Classifiers evaluation on the MxCN<sub>o</sub> corpus
 The **Precision metric** applied over the fifteen news categories is shown in the below Figure.
 
 <img src="/img/Precision_score_lines_full.png" width="100%" alt="precision score">
@@ -94,7 +94,7 @@ The **F1 metric** applied over the fifteen news categories is shown in the below
 
 <img src="/img/F1_score_lines_full.png" width="100%" alt="F1 score">
 
-### Classifiers evalution on the MxCN<sub>b</sub> corpus
+### Classifiers evaluation on the MxCN<sub>b</sub> corpus
 The **Precision metric** applied over the fifteen news categories is shown in the below Figure.
 
 <img src="/img/Precision_score_lines_5k.png" width="100%" alt="precision score">
@@ -108,4 +108,34 @@ The **F1 metric** applied over the fifteen news categories is shown in the below
 <img src="/img/F1_score_lines_5k.png" width="100%" alt="F1 score">
 
 
+### General results
+
+The table below describes the general evaluations obtained over the four classifiers.
+
+<table>
+<thead>
+<tr>
+<th rowspan="2">No.</th>
+<th rowspan="2">Classifier</th>
+<th colspan="4">Corpus MxNC<sub>o</sub></th>
+<th colspan="4">Corpus MxNC<sub>b</sub></th>
+</tr>
+<tr>
+<th>Precision</th>
+<th>Recall</th>
+<th>F1</th>
+<th>Accuracy</th>
+<th>Precision</th>
+<th>Recall</th>
+<th>F1</th>
+<th>Accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>NB</td><td>0.66</td><td>0.42</td><td>0.41</td><td>0.65</td><td>0.81</td><td>0.81</td><td>0.81</td><td>0.80</td></tr>
+<tr><td>2</td><td>SVM</td><td>0.70</td><td>0.49</td><td>0.49</td><td>0.68</td><td>0.79</td><td>0.79</td><td>0.78</td><td>0.78</td></tr>
+<tr><td>3</td><td>LR</td><td>0.81</td><td>0.80</td><td>0.80</td><td>0.84</td><td>**0.86**</td><td>**0.86**</td><td>**0.86**</td><td>**0.86**</td></tr>
+<tr><td>4</td><td>BiLSTM</td><td>**0.85**</td><td>**0.85**</td><td>**0.85**</td><td>**0.88**</td><td>**0.86**</td><td>**0.86**</td><td>**0.86**</td></td>**0.86**</td></tr>
+</tbody>
+</table>
 
