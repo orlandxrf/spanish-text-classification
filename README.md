@@ -67,9 +67,17 @@ Pyhton libraries used in this project:
 * keras==2.3.1
 * tensorflow==2.1.0
 
-## Bi-LSTM model
+### Bi-LSTM model
 
 <img src="/img/model.png" width="60%" alt="model">
+
+The figure below shows the loss and accuracy function to train the Bi-LSTM network for Corpus MxCN<sub>o</sub>.
+
+![model](/img/acc_loss.png)
+
+The figure below shows the loss and accuracy function to train the Bi-LSTM network for Corpus MxCN<sub>b</sub>.
+
+![model](/img/acc_loss_5k.png)
 
 ## Results
 
@@ -86,13 +94,18 @@ The **F1 metric** applied over the fifteen news categories is shown in the below
 
 <img src="/img/F1_score_lines_full.png" width="100%" alt="F1 score">
 
-The figure below shows the loss and accuracy function to train the Bi-LSTM network for Corpus MxCN<sub>o</sub>.
+### Classifiers evalution on the MxCN<sub>b</sub> corpus
+The **Precision metric** applied over the fifteen news categories is shown in the below Figure.
 
-![model](/img/acc_loss.png)
+<img src="/img/Precision_score_lines_5k.png" width="100%" alt="precision score">
 
-The figure below shows the loss and accuracy function to train the Bi-LSTM network for Corpus MxCN<sub>b</sub>.
+The **Recall metric** applied over the fifteen news categories is shown in the below Figure.
 
-![model](/img/acc_loss_5k.png)
+<img src="/img/Recall_score_lines_5k.png" width="100%" alt="recall score">
+
+The **F1 metric** applied over the fifteen news categories is shown in the below Figure.
+
+<img src="/img/F1_score_lines_5k.png" width="100%" alt="F1 score">
 
 
 
