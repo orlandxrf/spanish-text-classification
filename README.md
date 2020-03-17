@@ -69,10 +69,22 @@ Pyhton libraries used in this project:
 
 ## Bi-LSTM model
 
-<img src="/img/model.png" width="50%" alt="model">
+<img src="/img/model.png" width="60%" alt="model">
 
 ## Results
 
+### Classifiers evalution on the MxCN<sub>o</sub> corpus
+The **Precision metric** applied over the fifteen news categories is shown in the below Figure.
+
+<img src="/img/Precision_score_lines_full.png" width="100%" alt="precision score">
+
+The **Recall metric** applied over the fifteen news categories is shown in the below Figure.
+
+<img src="/img/Recall_score_lines_full.png" width="100%" alt="recall score">
+
+The **F1 metric** applied over the fifteen news categories is shown in the below Figure.
+
+<img src="/img/F1_score_lines_full.png" width="100%" alt="F1 score">
 
 The figure below shows the loss and accuracy function to train the Bi-LSTM network for Corpus MxCN<sub>o</sub>.
 
