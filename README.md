@@ -132,10 +132,14 @@ The table below describes the general evaluations obtained over the four classif
 </tr>
 </thead>
 <tbody>
-<tr><td>1</td><td>NB</td><td>0.66</td><td>0.42</td><td>0.41</td><td>0.65</td><td>0.81</td><td>0.81</td><td>0.81</td><td>0.80</td></tr>
-<tr><td>2</td><td>SVM</td><td>0.70</td><td>0.49</td><td>0.49</td><td>0.68</td><td>0.79</td><td>0.79</td><td>0.78</td><td>0.78</td></tr>
-<tr><td>3</td><td>LR</td><td>0.81</td><td>0.80</td><td>0.80</td><td>0.84</td><td>**0.86**</td><td>**0.86**</td><td>**0.86**</td><td>**0.86**</td></tr>
-<tr><td>4</td><td>BiLSTM</td><td>**0.85**</td><td>**0.85**</td><td>**0.85**</td><td>**0.88**</td><td>**0.86**</td><td>**0.86**</td><td>**0.86**</td></td>**0.86**</td></tr>
+<tr>
+	<td>1</td><td>NB</td><td>0.66</td><td>0.42</td><td>0.41</td><td>0.65</td><td>0.81</td><td>0.81</td><td>0.81</td><td>0.80</td></tr>
+<tr>
+	<td>2</td><td>SVM</td><td>0.70</td><td>0.49</td><td>0.49</td><td>0.68</td><td>0.79</td><td>0.79</td><td>0.78</td><td>0.78</td></tr>
+<tr>
+	<td>3</td><td>LR</td><td>0.81</td><td>0.80</td><td>0.80</td><td>0.84</td><td><strong>0.86</strong></td><td><strong>0.86</strong></td><td><strong>0.86</strong></td><td><strong>0.86</strong></td></tr>
+<tr>
+	<td>4</td><td>BiLSTM</td><td><strong>0.85</strong></td><td><strong>0.85</strong></td><td><strong>0.85</strong></td><td><strong>0.88</strong></td><td><strong>0.86</strong></td><td><strong>0.86</strong></td><td><strong>0.86</strong></td><td><strong>0.86</strong></td></tr>
 </tbody>
 </table>
 
