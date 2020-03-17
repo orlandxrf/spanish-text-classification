@@ -59,13 +59,23 @@ The figure below shows the documents histogram.
 
 ![documents histogram](/img/zoom_docs_hist.png)
 
-## Requirements
+## Classifiers
+
+We use four classifiers text classification about Mexican online news.
+
+* Naïve Bayes (NB)
+* Linear Support Vector Machine (SVM)
+* Logistic Regression (LR)
+* Bidirectional Long Short-Term Memory (BiLSTM)
+
+### Requirements
 
 Pyhton libraries used in this project:
 
 * scikit-learn==0.21.3
 * keras==2.3.1
 * tensorflow==2.1.0
+
 
 ### Bi-LSTM model
 
