@@ -69,7 +69,7 @@ Pyhton libraries used in this project:
 
 ## Bi-LSTM model
 
-![model](/img/model.png =500x)
+![model](/img/model.png){: style="width:50%;"}
 
 ## Results
 
