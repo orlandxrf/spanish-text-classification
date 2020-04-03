@@ -61,7 +61,7 @@ The figure below shows the documents histogram.
 
 ## Classifiers
 
-We use four classifiers text classification about Mexican online news.
+We use 4 text classification classifiers about Mexican online news.
 
 * Naïve Bayes (NB)
 * Linear Support Vector Machine (SVM)
